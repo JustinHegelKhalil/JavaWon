@@ -13,6 +13,7 @@ public class DisplaySignInfo extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		// super basic setup stuff.
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_display_sign_info);
 		Intent intent = getIntent();
@@ -24,6 +25,8 @@ public class DisplaySignInfo extends Activity {
 		signTitle.setText(message);
 		linear.addView(signTitle);
 		setContentView(linear);
+		// a lot of this is here for testing, as the JSON object is built-up 
+		// gradually, the raw output is helpful.
 		String info = JSON.readJSON(message);
 		signTitle.setText(info);
 		LinearLayout leftSide;
@@ -48,6 +51,7 @@ public class DisplaySignInfo extends Activity {
         symbol.setText(symbolString);
         symbol.setTextSize(20);
         // creating subViews (that's iOS thinking, gotta not do that.)
+        // creating "nested" views. Or, views for nesting.
         RelativeLayout.LayoutParams nameLayout = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -80,6 +84,8 @@ public class DisplaySignInfo extends Activity {
         // add centered layout to main layout
         relativeLayout.addView(centerLayout);
         // adding supplemental textviews to main layout
+        // why does Eclipse add 'misspelling' underlines in comments?
+        // that's just annoying.
         relativeLayout.addView(element);
         relativeLayout.addView(symbol);
         

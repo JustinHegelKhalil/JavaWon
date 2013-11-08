@@ -102,6 +102,9 @@ public class MainActivity extends Activity {
     	Button nov = new Button(this);
     	Button dec = new Button(this);
     	
+    	// to do: use JSON object to assign text to buttons.
+    	// Objective-C would make that easier.
+    	// to-research: Java alternative to pointers.
     	
     	// set up buttons.
     	jan.setText(R.string.Capricorn);
