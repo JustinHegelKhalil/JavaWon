@@ -34,11 +34,10 @@ public class DisplaySignInfo extends Activity {
 		// Layout code
 		RelativeLayout relativeLayout = new RelativeLayout(this);
 
-        // relativeLayout layout parameters.
-        
+        // setting relativeLayout layout parameters
         RelativeLayout.LayoutParams rellaypar = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
 
-        // new textview for element
+        // new textviews for element
         TextView name = new TextView(this);
         TextView element = new TextView(this);
         TextView symbol = new TextView(this);
@@ -64,7 +63,7 @@ public class DisplaySignInfo extends Activity {
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
         midPar.addRule(RelativeLayout.CENTER_HORIZONTAL);
         midPar.addRule(RelativeLayout.CENTER_VERTICAL);
-        // Setting the parameters on the TextView
+        // Setting the parameters on the text
         name.setLayoutParams(nameLayout);
         element.setLayoutParams(midPar);
         element.setId(100);
@@ -76,15 +75,17 @@ public class DisplaySignInfo extends Activity {
         RelativeLayout centerLayout = new RelativeLayout(this);
         RelativeLayout.LayoutParams centerLayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
         centerLayout.setLayoutParams(centerLayoutParams);
-        // Adding the TextView to the RelativeLayout as a child
+        // Adding the name to the centered layout
         centerLayout.addView(name);
+        // add centered layout to main layout
         relativeLayout.addView(centerLayout);
+        // adding supplemental textviews to main layout
         relativeLayout.addView(element);
         relativeLayout.addView(symbol);
         
         
 
-        // Setting the RelativeLayout as our content view
+        // setting the content view
         setContentView(relativeLayout, rellaypar);
 		
 	}

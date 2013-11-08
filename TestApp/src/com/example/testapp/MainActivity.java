@@ -2,23 +2,26 @@ package com.example.testapp;
 
 // import info.Information; // custom package
 import java.util.Random;
-// import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
 import android.widget.TextView;
+// import org.json.JSONObject;
+// import android.widget.RelativeLayout;
 
 
 
 public class MainActivity extends Activity {
 	public final static String USER_INPUT = "com.example.myfirstapp.INPUT";
 
+	// quiz related variables not yet utilized - for future enhancement
 	public int questionNumber;
 	public boolean quizActive = false;
 	
@@ -26,7 +29,7 @@ public class MainActivity extends Activity {
 	LinearLayout horizontal;
 	// time index 20:10 411re 1ltps
 	
-	
+	// random number generator test for eventual quiz
 	public int randy(int max, int min){
 		Random randy = new Random();
 		int randomNum = randy.nextInt(max - 0);
@@ -45,6 +48,7 @@ public class MainActivity extends Activity {
     	
         setContentView(R.layout.activity_main);
     }
+    // number checker, for future birthdate entry interface
     public boolean isInteger(String str) {
     	  try {
     	    Integer.parseInt(str);
@@ -64,32 +68,28 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-    	// Object JSONObject jObject = new JSONObject();
     	
+    	// setup layout details
     	linear = new LinearLayout(this);
     	linear.setOrientation(LinearLayout.VERTICAL);
+    	// setup text for prompt
     	text = new TextView(this);
-    	// text.setText("Please enter your birthday: mmddyyyy");
-    	text.setText("Please select your zodiac sign:");
-    	LinearLayout.LayoutParams promptParams = new LinearLayout.LayoutParams(
-    			LinearLayout.LayoutParams.WRAP_CONTENT,
-    			LinearLayout.LayoutParams.WRAP_CONTENT);
-    	// promptParams.gravity.
+    	text.setText(R.string.promptText);
+    	text.setTextSize(20);
     	
     	
-    	Button enter = new Button(this);
-    	enter.setText("enter");
+    	// center prompt
+    	text.setGravity(Gravity.CENTER);
     	
-    	// test area
-    	// Button testButton = new Button(this);
-    	// String[] randomAspects = {"confident", "creative", "independent", "warm", "considerate", "decicive", "laid back", "high-minded", "emotional", "logical", "unpredictable", "reliable", "trustworthy", "unrestrained", "affectionate", "honest", "noble", "friendly", "professional", "consistent", "resolute", "witty", "childish", "fun", "intelligent", "wise"};
-    	// testButton.setText(importedAspects[7]);
-    	// linear.addView(testButton);
-    	// test area over
+    	
+    	
+    	
     	userText = new EditText(this);
     	
     	linear.addView(text);
-    	text.setLayoutParams(promptParams);
+    	
+    	// make buttons for zodiac signs
+    	
     	Button jan = new Button(this);
     	Button feb = new Button(this);
     	Button mar = new Button(this);
@@ -104,7 +104,7 @@ public class MainActivity extends Activity {
     	Button dec = new Button(this);
     	
     	
-    	
+    	// set up buttons.
     	jan.setText(R.string.Capricorn);
     	linear.addView(jan);
     	jan.setOnClickListener(new View.OnClickListener() {
@@ -226,25 +226,10 @@ public class MainActivity extends Activity {
 				loadDataFor("Sagittarius");
 			}
 		});
-    	// linear.addView(userText);
-    	// linear.addView(enter);
     	
     	
-    	enter.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				isInteger(userText.getText().toString());
-				if (quizActive == false) {
-					beginQuestionnaire();
-				} else if (quizActive == true) {
-					nextQuestion();
-				}
-				
-				
-			}
-		});
+    	
+    	// set the view
     	setContentView(linear);
     	
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -253,6 +238,7 @@ public class MainActivity extends Activity {
     }
     String title = "test application";
     
+    // quiz stuff that is not yet implemented
     public void beginQuestionnaire(){
     	quizActive = true;
     	questionNumber = 1;
