@@ -1,6 +1,6 @@
-package info;
+package com.JHKhalil.testapp.zodiacData;
 
-import info.Information.Signs;
+import com.JHKhalil.testapp.zodiacData.Information.Signs;
 
 import java.util.ArrayList;
 
@@ -68,7 +68,7 @@ public class JSON {
 		return result;
 	}
 public static String readElement (String selected) {
-		
+		// get element alone for customizable interface
 		String result, elementName;
 		JSONObject returnedObject = buildJSON();
 		
@@ -84,7 +84,7 @@ public static String readElement (String selected) {
 		return result;
 	}
 public static String readSymbol (String selected) {
-	
+	// get symbol alone for customizable interface
 	String result, symbolName;
 	JSONObject returnedObject = buildJSON();
 	
@@ -100,7 +100,12 @@ public static String readSymbol (String selected) {
 	return result;
 }
 	
-	
+	// to-do: create method to assign numerical values, 1-366, for each day of the year
+	// including leap-days, and use it to correlate with birthdays...
+	// birthdays will need to be reduced to numerical values.
+	// january dates will be unchanged. feb dates are added to 31, 
+	// if sum is 60 and month value is 02, it's a leap day birthday
+	// else it's a march 1st birthday.
 	
 
 	/**

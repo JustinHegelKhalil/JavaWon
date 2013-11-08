@@ -1,6 +1,6 @@
-package info;
+package com.JHKhalil.testapp.zodiacData;
 
-
+// to-do: add date ranges, birth stones, and sign characteristics list for quiz
 public class Information {	
 	public enum Signs {
 		Capricorn("Capricorn:", "Earth", "The Goat"), 

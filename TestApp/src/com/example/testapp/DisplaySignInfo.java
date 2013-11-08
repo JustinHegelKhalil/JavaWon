@@ -1,6 +1,6 @@
 package com.example.testapp;
 
-import info.JSON;
+import com.JHKhalil.testapp.zodiacData.JSON;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

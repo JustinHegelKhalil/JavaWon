@@ -1,6 +1,6 @@
 package com.example.testapp;
 
-// import info.Information; // custom package
+
 import java.util.Random;
 
 import android.app.Activity;
@@ -13,8 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-// import org.json.JSONObject;
-// import android.widget.RelativeLayout;
+
 
 
 
