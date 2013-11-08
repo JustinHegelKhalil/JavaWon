@@ -25,6 +25,7 @@ public class MainActivity extends Activity {
 	public boolean quizActive = false;
 	
 	LinearLayout linear;
+	
 	LinearLayout horizontal;
 	// time index 20:10 411re 1ltps
 	
@@ -43,9 +44,14 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+     // setup layout details
+    	linear = new LinearLayout(this);
+    	linear.setOrientation(LinearLayout.VERTICAL);
     	
-        setContentView(R.layout.activity_main);
+    	setContentView(linear);
+    	
+        // setContentView(R.layout.activity_main);
+        
     }
     // number checker, for future birthdate entry interface
     public boolean isInteger(String str) {
@@ -68,9 +74,7 @@ public class MainActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	
-    	// setup layout details
-    	linear = new LinearLayout(this);
-    	linear.setOrientation(LinearLayout.VERTICAL);
+    	
     	// setup text for prompt
     	text = new TextView(this);
     	text.setText(R.string.promptText);
@@ -79,7 +83,6 @@ public class MainActivity extends Activity {
     	
     	// center prompt
     	text.setGravity(Gravity.CENTER);
-    	
     	
     	
     	
@@ -234,6 +237,7 @@ public class MainActivity extends Activity {
     	// set the view
     	setContentView(linear);
     	
+    	
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
@@ -268,6 +272,7 @@ public class MainActivity extends Activity {
     	
     }
     public void loadDataFor(String sign){
+    	// nested layouts in DisplaySignInfo.java activity
     	Intent intent = new Intent(this, DisplaySignInfo.class);
     	intent.putExtra(USER_INPUT, sign);
     	startActivity(intent);

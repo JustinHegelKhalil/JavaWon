@@ -66,21 +66,28 @@ public class DisplaySignInfo extends Activity {
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
         midPar.addRule(RelativeLayout.CENTER_HORIZONTAL);
-        midPar.addRule(RelativeLayout.CENTER_VERTICAL);
+        
         // Setting the parameters on the text
         name.setLayoutParams(nameLayout);
-        element.setLayoutParams(midPar);
-        element.setId(100);
-        name.setId(20);
-        midPar.addRule(RelativeLayout.BELOW, name.getId());
-        Llaypar.addRule(RelativeLayout.BELOW, element.getId());
-        symbol.setLayoutParams(Llaypar);
-
         RelativeLayout centerLayout = new RelativeLayout(this);
-        RelativeLayout.LayoutParams centerLayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        RelativeLayout.LayoutParams centerLayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        centerLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         centerLayout.setLayoutParams(centerLayoutParams);
         // Adding the name to the centered layout
+        // also retrofitting layouts with ID numbers so that they can reference
+        // each-other for alignment purposes.
         centerLayout.addView(name);
+        centerLayout.setId(111);
+        element.setLayoutParams(midPar);
+        element.setId(101);
+        name.setId(010);
+        midPar.addRule(RelativeLayout.BELOW, centerLayout.getId());
+        Llaypar.addRule(RelativeLayout.BELOW, element.getId());
+        Llaypar.addRule(RelativeLayout.ALIGN_LEFT, element.getId());
+        symbol.setLayoutParams(Llaypar);
+
+        
+       
         // add centered layout to main layout
         relativeLayout.addView(centerLayout);
         // adding supplemental textviews to main layout
