@@ -1,11 +1,11 @@
 package com.JHKhalil.testapp.zodiacData;
 
-import com.JHKhalil.testapp.zodiacData.Information.Signs;
-
 import java.util.ArrayList;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.JHKhalil.testapp.zodiacData.Information.Signs;
 
 
 

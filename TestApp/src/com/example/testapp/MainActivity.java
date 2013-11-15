@@ -4,8 +4,10 @@ package com.example.testapp;
 import java.util.Random;
 
 import android.app.Activity;
+// import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
@@ -15,9 +17,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.JHKhalil.testapp.zodiacData.GoGet;
+
+// import android.widget.RadioButton;
+
+
+
 
 
 public class MainActivity extends Activity {
+	
+	
+	
 	public final static String USER_INPUT = "com.example.myfirstapp.INPUT";
 
 	// quiz related variables not yet utilized - for future enhancement
@@ -43,6 +54,7 @@ public class MainActivity extends Activity {
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+    	
         super.onCreate(savedInstanceState);
      // setup layout details
     	linear = new LinearLayout(this);
@@ -73,11 +85,34 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+    	  	
     	
+    	LinearLayout temp = new LinearLayout(this);
+    	TextView loading = new TextView(this);
+    	loading.setText(R.string.loading);
+    	loading.setTextSize(20);
+    	temp.addView(loading);
+    	setContentView(temp);
+    	getMenuInflater().inflate(R.menu.main, menu);
     	
+    	StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+    	StrictMode.setThreadPolicy(policy);
+    	boolean quizOn = false;
+    	
+    	String xist = GoGet.readFromFile();
+    	System.out.println(xist);
+    	if (xist.length() > 0){
+    		loadDataFor(xist);
+    		LinearLayout lay = new LinearLayout(this);
+    		TextView banner = new TextView(this);
+    		banner.setText(xist);
+    		lay.addView(banner);
+    		setContentView(lay);
+    	}
     	// setup text for prompt
     	text = new TextView(this);
-    	text.setText(R.string.promptText);
+    	
+    	// text.setText(R.string.promptText);
     	text.setTextSize(20);
     	
     	
@@ -233,9 +268,20 @@ public class MainActivity extends Activity {
 		});
     	
     	
-    	
     	// set the view
     	setContentView(linear);
+    	
+    	if (quizOn == true) {
+    		EditText monthField = new EditText(this);
+    		EditText dayField = new EditText(this);
+    		// RadioButton testMe = new RadioButton(this);
+    		linear.addView(monthField);
+    		linear.addView(dayField);
+    		linear.addView(monthField);
+    		LinearLayout.LayoutParams mlp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+    		monthField.setLayoutParams(mlp); 
+    		monthField.setWidth(90);
+    	}
     	
     	
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -277,5 +323,8 @@ public class MainActivity extends Activity {
     	intent.putExtra(USER_INPUT, sign);
     	startActivity(intent);
 
+    }
+    public void checkConnect(){
+    	
     }
 }
