@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -45,7 +46,7 @@ public class MainActivity extends Activity {
 	Button saveToFileButton;
 	static String noConnectionError;
 	ImageView iv;
-	
+	GridLayout first_gl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
@@ -55,6 +56,14 @@ public class MainActivity extends Activity {
     	// View vi = li.inflate(R.layout.linear_for_grid, R.layout.activity_main); 
     	
     	setContentView(R.layout.activity_main);
+    	GridLayout firstLayout = (GridLayout)findViewById(R.id.grid_one);
+    	View spinnerView = getLayoutInflater().inflate(R.layout.spinner_layout, firstLayout, false);
+    	View secondRowView = getLayoutInflater().inflate(R.layout.second_row_layout,  firstLayout, false);
+    	firstLayout.addView(spinnerView);
+    	firstLayout.addView(secondRowView);
+    	
+    	
+    	
     	LinearLayout existing_ll = (LinearLayout) findViewById(R.id.linlay_two);
     	iv = (ImageView)getLayoutInflater().inflate(R.layout.element_image, null);
     	existing_ll.addView(iv);
@@ -63,8 +72,19 @@ public class MainActivity extends Activity {
     	
     	
     	spinster = (Spinner) findViewById(R.id.sign_spinner);
-    	
-    	// spinster.setSelection(3);
+    	String[] signsArray = 
+		  	{"Capricorn", 
+			 "Aquarius", 
+			 "Pisces",
+			 "Aries",
+			 "Taurus", 
+			 "Gemini", 
+			 "Cancer", 
+			 "Leo",
+			 "Virgo",
+			 "Libra",
+			 "Scorpio",
+			 "Sagittarius"};
     	int i;
     	boolean savedData = false;
     	String xist = GoGet.readStringFromFile("userSign", null);
@@ -72,7 +92,7 @@ public class MainActivity extends Activity {
     		currentItems = getResources().getStringArray(R.array.signArray);
     		
     		for(i = 0; i <= currentItems.length; i++) {
-    			String theOneHere = currentItems[i].toString();
+    			String theOneHere = signsArray[i];
     			if (theOneHere.equals(xist)){
     				spinster.setSelection(i);
     				System.out.println(" outputting for a match: " + theOneHere + xist);
@@ -82,12 +102,6 @@ public class MainActivity extends Activity {
 				
     			  
     			}
-    		// signSelectedSpinner sa = new signSelectedSpinner();
-    		// check file's data
-    		// loadAndSetHoroscope(xist);
-    		// set spinner to saved sign
-    		// System.out.println(" there is a file there containing: " + xist);
-    		// spinster.setSelection(i);
     	}
     	
     	currentContext = this;
@@ -102,16 +116,20 @@ public class MainActivity extends Activity {
     	
     	saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            	loadAndSetHoroscope(signFromSpinner);
+            	String signThingy = getSignFromSpinner();
+            	loadAndSetHoroscope(signThingy);
             } 
         });
     	saveToFileButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	// save sign to file for defaults on startup
-            	GoGet.writeStringToFile(signFromSpinner, "userSign", false);
-            	GoGet.writeFile(signFromSpinner);
+            	String signThingy = getSignFromSpinner();
+            	GoGet.writeStringToFile(signThingy, "userSign", false);
+            	GoGet.writeFile(signThingy);
+            	System.out.println("testing this: " + signThingy);
             } 
         });
+    	// String signThingy = getSignFromSpinner();
     	signFromSpinner = spinster.getSelectedItem().toString();
     	final Handler h = new Handler();
         h.postDelayed(new Runnable()
@@ -121,7 +139,8 @@ public class MainActivity extends Activity {
             @Override
             public void run()
             {
-            	if (lastSignLoaded != signFromSpinner){
+            	String signThingy = getSignFromSpinner();
+            	if (lastSignLoaded != signThingy){
             		refreshInfo();
             	}
             }}, 2500);
@@ -134,24 +153,7 @@ public class MainActivity extends Activity {
     	} else if (savedData == false){
     		
     	}
-    	// LinearLayout linear = new LinearLayout(this);
-    	// LinearLayout linear = (LinearLayout)getLayoutInflater().inflate(R.layout.linear_for_grid, null);
     	
-    	// itemRegion.setText("test");
-    	// LinearLayout ll = (LinearLayout) findViewById(R.id.linlay_two);
-    	// LinearLayout ll = (LinearLayout)getLayoutInflater().inflate(R.layout.linear_for_grid, null);
-
-    	// TextView tv = (TextView) findViewById(R.id.grid_item_label);
-    	// tv.setText(xist);
-    	// ll.addView(tv);
-    	
-    	// ImageView imagev = new ImageView(this);
-    	// existing_ll.addView(imagev);
-    	// ViewGroup vg = (ViewGroup)getCurrentFocus().getParent();
-    	// Context con = (Context)getApplicationContext().get.getParent();
-    	
-    	//existing_ll.setLayoutParams(lp);
-    	//existing_ll.addView(ll);
     }
     
 
@@ -159,11 +161,12 @@ public class MainActivity extends Activity {
       public void setText(String inputString, String targetId, String elementName){
     	  if (targetId == "horoscopeRegion"){
     		  String newLine = "\n";
+    		String signThingy = getSignFromSpinner();
     		String appNamePrefix = getString(R.string.app_name);
-      		setTitle(appNamePrefix + " for " + signFromSpinner);
+      		setTitle(appNamePrefix + " for " + signThingy);
     		final TextView horoscopeRegion = (TextView) findViewById(R.id.horoscopeDisplay);
-    		appendableData = JSON.readJSON(signFromSpinner);
-    		String elementString = JSON.readElement(signFromSpinner);
+    		appendableData = JSON.readJSON(signThingy);
+    		String elementString = JSON.readElement(signThingy);
     		horoscopeRegion.setText(appendableData + newLine + inputString);
     		if (elementString != null){
     			System.out.println(elementString);
@@ -204,17 +207,19 @@ public class MainActivity extends Activity {
       public void loadAndSetHoroscope(String stringToGet){
     	  new Thread(new Runnable() { 
               public void run(){
+            	  String signThingy = getSignFromSpinner();
             	  signFromSpinner = spinster.getSelectedItem().toString();
             	  GoGet gg = new GoGet();
-            	  horoscopeText = gg.horoscope(getApplicationContext(), signFromSpinner);
+            	  horoscopeText = gg.horoscope(getApplicationContext(), signThingy);
             	  runOnUiThread(new Runnable() {
             		  public void run() {
+            			  String signThingy = getSignFromSpinner();
             			  if (horoscopeText.length() > 0){
             				  setText(horoscopeText, "horoscopeRegion", null);
             				  // showOrClearElements(horoscopeText);
-            				  appendableData = JSON.readJSON(signFromSpinner);
+            				  appendableData = JSON.readJSON(signThingy);
             				  // setHoroscopeText(horoscopeText);
-            				  lastSignLoaded = signFromSpinner;
+            				  lastSignLoaded = signThingy;
             			  } else {
             				  horoscopeText = getString(R.string.noConnection);
             			  }
@@ -266,10 +271,11 @@ public class MainActivity extends Activity {
               @Override
               public void run()
               {
-              	if (lastSignLoaded != signFromSpinner){
-              		loadAndSetHoroscope(signFromSpinner);
+            	  String signThingy = getSignFromSpinner();
+              	if (lastSignLoaded != signThingy){
+              		loadAndSetHoroscope(signThingy);
                       
-                      Log.d("Timer", signFromSpinner + lastSignLoaded);
+                      Log.d("Timer", signThingy + lastSignLoaded);
                       h.postDelayed(this, 2500);
               	}
               	
@@ -288,5 +294,22 @@ public class MainActivity extends Activity {
       public static void getError(String type){
     	  horoscopeText = type;
       }
-     
+      public String getSignFromSpinner(){
+    	  String[] signsArray = 
+    		  	{"Capricorn", 
+    			 "Aquarius", 
+    			 "Pisces",
+    			 "Aries",
+    			 "Taurus", 
+    			 "Gemini", 
+    			 "Cancer", 
+    			 "Leo",
+    			 "Virgo",
+    			 "Libra",
+    			 "Scorpio",
+    			 "Sagittarius"};
+    	  int indexy = spinster.getSelectedItemPosition();
+    	  String returner = signsArray[indexy];
+    	  return returner;
+      }
 }

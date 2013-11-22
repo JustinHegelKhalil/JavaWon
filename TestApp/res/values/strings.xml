@@ -37,17 +37,17 @@
 	<string name="selectASignForHoroscope">Select a sign for horoscope</string>
 	<string name="loading">Loading data, please wait a moment</string>
 	<string-array name="signArray">
-	    <item>Capricorn</item>
-	    <item>Aquarius</item>
-	    <item>Pisces</item>
-	    <item>Aries</item>
-	    <item>Taurus</item>
-	    <item>Gemini</item>
-	    <item>Cancer</item>
-	    <item>Leo</item>
-	    <item>Virgo</item>
-	    <item>Libra</item>
-	    <item>Scorpio</item>
-	    <item>Sagittarius</item>
+	    <item>   Capricorn: Dec 22 - Jan 20</item>
+	    <item>   Aquarius: Jan 21 - Feb 19</item>
+	    <item>   Pisces: Feb 20 - Mar 20</item>
+	    <item>   Aries: Mar 21 - Apr 19</item>
+	    <item>   Taurus: Apr 20 - May 20</item>
+	    <item>   Gemini: May 21 - Jun 20</item>
+	    <item>   Cancer: Jun 21 - Jul 22</item>
+	    <item>   Leo: Jul 23 - Aug 22</item>
+	    <item>   Virgo: Aug 23 - Sep 22</item>
+	    <item>   Libra: Sep 23 - Oct 22</item>
+	    <item>   Scorpio: Oct 23 - Nov 21</item>
+	    <item>   Sagittarius: Nov 22 - Dec 21</item>
 	</string-array>
 </resources>
