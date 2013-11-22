@@ -21,7 +21,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.ViewFlipper;
 
 import com.JHKhalil.testapp.zodiacData.GoGet;
 import com.JHKhalil.testapp.zodiacData.JSON;
@@ -51,12 +50,11 @@ public class MainActivity extends Activity {
 	static String noConnectionError;
 	ImageView iv;
 	GridLayout first_gl;
-	ViewFlipper viewflipper;
     Button openWeb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
-    	
+    	//
     	// string for error message
     	noConnectionError = getString(R.string.noConnection);
     	//  view creation
