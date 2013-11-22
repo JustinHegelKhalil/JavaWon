@@ -14,6 +14,7 @@ public class WebViewActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setTheme(R.style.baseStyle_base);
 		setContentView(R.layout.activity_web_view);
 		//setupActionBar();
 		

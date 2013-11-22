@@ -8,7 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:text="@string/selectSign"
-        style="@style/baseStyle.red"
         android:onClick="enterSign" />
 
 </LinearLayout>

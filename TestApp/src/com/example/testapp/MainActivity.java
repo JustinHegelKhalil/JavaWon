@@ -60,8 +60,7 @@ public class MainActivity extends Activity {
     	// string for error message
     	noConnectionError = getString(R.string.noConnection);
     	//  view creation
-    	 
-    	
+    	setTheme(R.style.baseStyle_base);
     	// contentview set to default
     	setContentView(R.layout.activity_main);
     	// trgeting element within layout for inflated item injection
