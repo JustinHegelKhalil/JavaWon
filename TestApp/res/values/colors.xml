@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_bg">#669900</color>
+    <color name="secondary_bg">#6699DD</color>
+    <color name="trinary_bg">#997799</color>
+    <color name="primary_hl">#66EE00</color>
+    <color name="secondary_hl">#66DDDD</color>
+    <color name="trinary_hl">#99DD99</color>
+    <color name="primary_shade">#444444</color>
+    <color name="secondary_shade">#99FFFF</color>
+    <color name="primary_on">#66FF00</color>
+    <color name="secondary_on">#66FFFF</color>
+    <color name="primary_off">#FF4422</color>
+    <color name="secondary_off">#111111</color>
+    <color name="primary_black">#000000</color>
+    <color name="primary_white">#999999</color>
+    <color name="earth_bg">#CC9955</color>
+    <color name="air_bg">#66CCFF</color>
+    <color name="water_bg">#0099FF</color>
+    <color name="fire_bg">#CC6633</color>
+    <color name="earth_hl">#CCCCBB</color>
+    <color name="air_hl">#CCFFFF</color>
+    <color name="water_hl">#00CCFF</color>
+    <color name="fire_hl">#FFFF66</color>
+    <color name="earth_accent">#996600</color>
+    <color name="air_accent">#FFFFFF</color>
+    <color name="water_accent">#00FFFF</color>
+    <color name="fire_accent">#FFFF00</color>
+</resources>

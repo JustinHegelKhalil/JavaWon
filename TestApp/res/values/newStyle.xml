@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="baseStyle.base" parent="android:style/Theme.Light">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:textColor">@color/primary_black</item>
+        <item name="android:windowBackground">@color/primary_black</item>
+      	<item name="android:colorBackgroundCacheHint">@color/primary_black</item> 
+        <item name="android:listChoiceBackgroundIndicator">@color/primary_black</item>
+        <item name="android:textAlignment">center</item>"
+        </style>
+    <style name="baseStyle.brown" parent="android:style/Theme">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/primary_black</item>
+        <item name="android:background">@drawable/rounded_box_gradient_brown</item>
+        <item name="android:windowBackground">@color/primary_black</item>
+      	<item name="android:colorBackgroundCacheHint">@color/primary_black</item> 
+        <item name="android:listChoiceBackgroundIndicator">@color/primary_black</item>
+        <item name="android:dropDownSelector">@color/primary_black</item>
+        <item name="android:textAlignment">center</item>
+        </style>
+    <style name="baseStyle.teal" parent="android:style/Theme">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/primary_black</item>
+        <item name="android:background">@drawable/rounded_box_gradient_paleblue</item>
+        <item name="android:windowBackground">@color/primary_black</item>
+      	<item name="android:colorBackgroundCacheHint">@color/primary_black</item> 
+        <item name="android:listChoiceBackgroundIndicator">@color/primary_black</item>
+        <item name="android:dropDownSelector">@color/primary_black</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+    <style name="baseStyle.red" parent="android:style/Theme">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/primary_black</item>
+        <item name="android:background">@drawable/rounded_box_gradient_red</item>
+        <item name="android:windowBackground">@color/primary_black</item>
+      	<item name="android:colorBackgroundCacheHint">@color/primary_black</item> 
+        <item name="android:listChoiceBackgroundIndicator">@color/primary_black</item>
+        <item name="android:dropDownSelector">@color/primary_black</item>
+        <item name="android:textAlignment">center</item>
+        </style>
+        <style name="baseStyle.blue" parent="android:style/Theme">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/primary_black</item>
+        <item name="android:background">@drawable/rounded_box_gradient_blue</item>
+        <item name="android:windowBackground">@color/primary_black</item>
+      	<item name="android:colorBackgroundCacheHint">@color/primary_black</item> 
+        <item name="android:listChoiceBackgroundIndicator">@color/primary_black</item>
+        <item name="android:dropDownSelector">@color/primary_black</item>
+        <item name="android:textAlignment">center</item>
+        </style>
+</resources>

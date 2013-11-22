@@ -1,5 +1,5 @@
 package com.JHKhalil.testapp.zodiacData;
-
+//Justin Hegel Khalil- testApp- FullSail- Java-1
 import java.util.ArrayList;
 
 import org.json.JSONException;
@@ -11,6 +11,12 @@ import com.JHKhalil.testapp.zodiacData.Information.Signs;
 
 public class JSON {
 	ArrayList<String> _signTags;
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+}
 	
 	public static JSONObject buildJSON(){
 		
@@ -67,6 +73,10 @@ public class JSON {
 		}
 		return result;
 	}
+public static JSONObject returnJsonObj() {
+		JSONObject returnedObject = buildJSON();
+		return returnedObject;
+	}
 public static String readElement (String selected) {
 		// get element alone for customizable interface
 		String result, elementName;
@@ -75,7 +85,7 @@ public static String readElement (String selected) {
 		try {
 			elementName = returnedObject.getJSONObject("query").getJSONObject(selected).getString("element");
 			
-			result = "Element: " + elementName;
+			result = elementName;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -111,9 +121,6 @@ public static String readSymbol (String selected) {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 }

@@ -1,330 +1,292 @@
 package com.example.testapp;
+//Justin Hegel Khalil- testApp- FullSail- Java-1
 
 
-import java.util.Random;
+
+// import org.w3c.dom.Document;
 
 import android.app.Activity;
-// import android.content.Context;
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.view.Gravity;
-import android.view.Menu;
+import android.os.Handler;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-
 import com.JHKhalil.testapp.zodiacData.GoGet;
-
-// import android.widget.RadioButton;
-
+import com.JHKhalil.testapp.zodiacData.JSON;
+import com.JHKhalil.testapp.zodiacData.signSelectedSpinner;
 
 
 
 
 public class MainActivity extends Activity {
-	
-	
-	
-	public final static String USER_INPUT = "com.example.myfirstapp.INPUT";
-
-	// quiz related variables not yet utilized - for future enhancement
-	public int questionNumber;
-	public boolean quizActive = false;
-	
-	LinearLayout linear;
-	
-	LinearLayout horizontal;
-	// time index 20:10 411re 1ltps
-	
-	// random number generator test for eventual quiz
-	public int randy(int max, int min){
-		Random randy = new Random();
-		int randomNum = randy.nextInt(max - 0);
-		return randomNum;	
-	}
-	
-	
-	
-	TextView text;
+	Context currentContext;
+	String[] currentItems;
+	String[] inflatedItems;
+	static TextView horoscopeRegion;
 	EditText userText;
+	String signFromSpinner;
+	static String horoscopeText;
+	static Button saveButton;
+	Spinner spinster;
+	String lastSignLoaded;
+	LayoutInflater inflate;
+	String element;
+	String symbol;
+	String appendableData;
+	Button saveToFileButton;
+	static String noConnectionError;
+	ImageView iv;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+    	super.onCreate(savedInstanceState);
     	
-        super.onCreate(savedInstanceState);
-     // setup layout details
-    	linear = new LinearLayout(this);
-    	linear.setOrientation(LinearLayout.VERTICAL);
     	
-    	setContentView(linear);
+    	noConnectionError = getString(R.string.noConnection);
+    	// View vi = li.inflate(R.layout.linear_for_grid, R.layout.activity_main); 
     	
-        // setContentView(R.layout.activity_main);
-        
-    }
-    // number checker, for future birthdate entry interface
-    public boolean isInteger(String str) {
-    	  try {
-    	    Integer.parseInt(str);
-    	    
-    	    TextView response = new TextView(this);
-    	    response.setText("that's a number");
-    	    linear.addView(response);
-    	    return true;
-    	  } catch(NumberFormatException e) {
-    		  TextView response = new TextView(this);
-      	    response.setText("that's not a number");
-      	    linear.addView(response);
-    	    return false;
-    	  }
-    	}
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-    	  	
+    	setContentView(R.layout.activity_main);
+    	LinearLayout existing_ll = (LinearLayout) findViewById(R.id.linlay_two);
+    	iv = (ImageView)getLayoutInflater().inflate(R.layout.element_image, null);
+    	existing_ll.addView(iv);
     	
-    	LinearLayout temp = new LinearLayout(this);
-    	TextView loading = new TextView(this);
-    	loading.setText(R.string.loading);
-    	loading.setTextSize(20);
-    	temp.addView(loading);
-    	setContentView(temp);
-    	getMenuInflater().inflate(R.menu.main, menu);
     	
-    	StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-    	StrictMode.setThreadPolicy(policy);
-    	boolean quizOn = false;
     	
-    	String xist = GoGet.readFromFile();
-    	System.out.println(xist);
+    	
+    	spinster = (Spinner) findViewById(R.id.sign_spinner);
+    	
+    	// spinster.setSelection(3);
+    	int i;
+    	boolean savedData = false;
+    	String xist = GoGet.readStringFromFile("userSign", null);
     	if (xist.length() > 0){
-    		loadDataFor(xist);
-    		LinearLayout lay = new LinearLayout(this);
-    		TextView banner = new TextView(this);
-    		banner.setText(xist);
-    		lay.addView(banner);
-    		setContentView(lay);
-    	}
-    	// setup text for prompt
-    	text = new TextView(this);
-    	
-    	// text.setText(R.string.promptText);
-    	text.setTextSize(20);
-    	
-    	
-    	// center prompt
-    	text.setGravity(Gravity.CENTER);
-    	
-    	
-    	
-    	userText = new EditText(this);
-    	
-    	linear.addView(text);
-    	
-    	// make buttons for zodiac signs
-    	
-    	Button jan = new Button(this);
-    	Button feb = new Button(this);
-    	Button mar = new Button(this);
-    	Button apr = new Button(this);
-    	Button may = new Button(this);
-    	Button jun = new Button(this);
-    	Button jul = new Button(this);
-    	Button aug = new Button(this);
-    	Button sep = new Button(this);
-    	Button oct = new Button(this);
-    	Button nov = new Button(this);
-    	Button dec = new Button(this);
-    	
-    	// to do: use JSON object to assign text to buttons.
-    	// Objective-C would make that easier.
-    	// to-research: Java alternative to pointers.
-    	
-    	// set up buttons.
-    	jan.setText(R.string.Capricorn);
-    	linear.addView(jan);
-    	jan.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				loadDataFor("Capricorn");
-			}
-		});
-    	feb.setText(R.string.Aquarius);
-    	linear.addView(feb);
-    	feb.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				loadDataFor("Aquarius");
-			}
-		});
-    	mar.setText(R.string.Pisces);
-    	linear.addView(mar);
-    	mar.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				loadDataFor("Pisces");
+    		currentItems = getResources().getStringArray(R.array.signArray);
+    		
+    		for(i = 0; i <= currentItems.length; i++) {
+    			String theOneHere = currentItems[i].toString();
+    			if (theOneHere.equals(xist)){
+    				spinster.setSelection(i);
+    				System.out.println(" outputting for a match: " + theOneHere + xist);
+    				break;
+    			}
+    			
 				
-			}
-		});
-    	apr.setText(R.string.Aries);
-    	linear.addView(apr);
-    	apr.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				loadDataFor("Aries");
-			}
-		});
-    	may.setText(R.string.Taurus);
-    	linear.addView(may);
-    	may.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				loadDataFor("Taurus");
-			}
-		});
-    	jun.setText(R.string.Gemini);
-    	linear.addView(jun);
-    	jun.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				loadDataFor("Gemini");
-			}
-		});
-    	jul.setText(R.string.Cancer);
-    	linear.addView(jul);
-    	jul.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				loadDataFor("Cancer");
-			}
-		});
-    	aug.setText(R.string.Leo);
-    	linear.addView(aug);
-    	aug.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				loadDataFor("Leo");
-			}
-		});
-    	sep.setText(R.string.Virgo);
-    	linear.addView(sep);
-    	sep.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				loadDataFor("Virgo");
-			}
-		});
-    	oct.setText(R.string.Libra);
-    	linear.addView(oct);
-    	oct.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				loadDataFor("Libra");
-			}
-		});
-    	nov.setText(R.string.Scorpio);
-    	linear.addView(nov);
-    	nov.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				loadDataFor("Scorpio");
-			}
-		});
-    	dec.setText(R.string.Sagittarius);
-    	linear.addView(dec);
-    	dec.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				loadDataFor("Sagittarius");
-			}
-		});
-    	
-    	
-    	// set the view
-    	setContentView(linear);
-    	
-    	if (quizOn == true) {
-    		EditText monthField = new EditText(this);
-    		EditText dayField = new EditText(this);
-    		// RadioButton testMe = new RadioButton(this);
-    		linear.addView(monthField);
-    		linear.addView(dayField);
-    		linear.addView(monthField);
-    		LinearLayout.LayoutParams mlp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-    		monthField.setLayoutParams(mlp); 
-    		monthField.setWidth(90);
+    			  
+    			}
+    		// signSelectedSpinner sa = new signSelectedSpinner();
+    		// check file's data
+    		// loadAndSetHoroscope(xist);
+    		// set spinner to saved sign
+    		// System.out.println(" there is a file there containing: " + xist);
+    		// spinster.setSelection(i);
     	}
     	
+    	currentContext = this;
+    	currentItems = getResources().getStringArray(R.array.signArray);
+    	horoscopeRegion = (TextView) findViewById(R.id.horoscopeDisplay);
+    	saveButton = (Button) findViewById(R.id.signSelectedButton);
+    	saveToFileButton = (Button) findViewById(R.id.saveSetting);
+    	lastSignLoaded = "";
+    	horoscopeRegion.setText(R.string.loading);
+    	addListenerOnSpinnerItemSelection();
     	
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-    String title = "test application";
-    
-    // quiz stuff that is not yet implemented
-    public void beginQuestionnaire(){
-    	quizActive = true;
-    	questionNumber = 1;
-    	text.setText("Question " + questionNumber);
-    	System.out.println(randy(10, 0));
-    }
-    public void nextQuestion() {
-    	if (questionNumber < 10) {
-    		questionNumber++;
-    		text.setText("Question " + questionNumber);
-    		System.out.println(randy(10, 0));
-    	} else {
-    		questionNumber = 1;
-    		text.setText("quiz complete");
-    		quizActive = false;
-    		displayScore();
-    		System.out.println(randy(10, 0));
+    	
+    	saveButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	loadAndSetHoroscope(signFromSpinner);
+            } 
+        });
+    	saveToFileButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	// save sign to file for defaults on startup
+            	GoGet.writeStringToFile(signFromSpinner, "userSign", false);
+            	GoGet.writeFile(signFromSpinner);
+            } 
+        });
+    	signFromSpinner = spinster.getSelectedItem().toString();
+    	final Handler h = new Handler();
+        h.postDelayed(new Runnable()
+        {
+        	
+           
+            @Override
+            public void run()
+            {
+            	if (lastSignLoaded != signFromSpinner){
+            		refreshInfo();
+            	}
+            }}, 2500);
+    	
+    	
+    	
+        
+    	if (savedData == true){
+    		
+    	} else if (savedData == false){
+    		
     	}
+    	// LinearLayout linear = new LinearLayout(this);
+    	// LinearLayout linear = (LinearLayout)getLayoutInflater().inflate(R.layout.linear_for_grid, null);
     	
-    }
-    public void changeDisplay() {
-    	
-    }
-    public void displayScore() {
-    	
-    }
-    public void loadDataFor(String sign){
-    	// nested layouts in DisplaySignInfo.java activity
-    	Intent intent = new Intent(this, DisplaySignInfo.class);
-    	intent.putExtra(USER_INPUT, sign);
-    	startActivity(intent);
+    	// itemRegion.setText("test");
+    	// LinearLayout ll = (LinearLayout) findViewById(R.id.linlay_two);
+    	// LinearLayout ll = (LinearLayout)getLayoutInflater().inflate(R.layout.linear_for_grid, null);
 
-    }
-    public void checkConnect(){
+    	// TextView tv = (TextView) findViewById(R.id.grid_item_label);
+    	// tv.setText(xist);
+    	// ll.addView(tv);
     	
+    	// ImageView imagev = new ImageView(this);
+    	// existing_ll.addView(imagev);
+    	// ViewGroup vg = (ViewGroup)getCurrentFocus().getParent();
+    	// Context con = (Context)getApplicationContext().get.getParent();
+    	
+    	//existing_ll.setLayoutParams(lp);
+    	//existing_ll.addView(ll);
     }
+    
+
+    
+      public void setText(String inputString, String targetId, String elementName){
+    	  if (targetId == "horoscopeRegion"){
+    		  String newLine = "\n";
+    		String appNamePrefix = getString(R.string.app_name);
+      		setTitle(appNamePrefix + " for " + signFromSpinner);
+    		final TextView horoscopeRegion = (TextView) findViewById(R.id.horoscopeDisplay);
+    		appendableData = JSON.readJSON(signFromSpinner);
+    		String elementString = JSON.readElement(signFromSpinner);
+    		horoscopeRegion.setText(appendableData + newLine + inputString);
+    		if (elementString != null){
+    			System.out.println(elementString);
+    			if (elementString == "Fire"){
+        			iv.setImageResource(R.drawable.fire_el);
+        			horoscopeRegion.setBackground(getResources().getDrawable(R.drawable.rounded_box_gradient_red));
+        		} else if (elementString == "Water"){
+        			iv.setImageResource(R.drawable.water_el);
+        			horoscopeRegion.setBackground(getResources().getDrawable(R.drawable.rounded_box_gradient_blue));
+        		} else if (elementString == "Earth"){
+        			iv.setImageResource(R.drawable.earth_el);
+        			horoscopeRegion.setBackground(getResources().getDrawable(R.drawable.rounded_box_gradient_brown));
+        		} else if (elementString == "Air"){
+        			iv.setImageResource(R.drawable.air_el);
+        			horoscopeRegion.setBackground(getResources().getDrawable(R.drawable.rounded_box_gradient_paleblue));
+        		}
+    		}
+    		
+    		
+    	  }
+    	  
+      }
+      /*
+      public static void showOrClearElements(String signString){
+    	  if (horoscopeText != null){
+    		horoscopeRegion.setVisibility(View.VISIBLE);
+    		horoscopeRegion.setText(horoscopeText);
+    	  } else {
+    		horoscopeRegion.setVisibility(View.GONE);
+    	  }
+      }
+      */
+      public void addListenerOnSpinnerItemSelection() {
+    		spinster = (Spinner) findViewById(R.id.sign_spinner);
+    		spinster.setOnItemSelectedListener(new signSelectedSpinner());
+    		
+      }
+      public void loadAndSetHoroscope(String stringToGet){
+    	  new Thread(new Runnable() { 
+              public void run(){
+            	  signFromSpinner = spinster.getSelectedItem().toString();
+            	  GoGet gg = new GoGet();
+            	  horoscopeText = gg.horoscope(getApplicationContext(), signFromSpinner);
+            	  runOnUiThread(new Runnable() {
+            		  public void run() {
+            			  if (horoscopeText.length() > 0){
+            				  setText(horoscopeText, "horoscopeRegion", null);
+            				  // showOrClearElements(horoscopeText);
+            				  appendableData = JSON.readJSON(signFromSpinner);
+            				  // setHoroscopeText(horoscopeText);
+            				  lastSignLoaded = signFromSpinner;
+            			  } else {
+            				  horoscopeText = getString(R.string.noConnection);
+            			  }
+         
+
+            		  }
+            	  });
+              }}).start();
+    	  if (horoscopeText != null){
+    		  if (horoscopeText.length() <= 0){
+    			  horoscopeText = getString(R.string.noConnection);
+    		  }
+    		  
+    	  } else if (horoscopeText == null){
+    		  horoscopeText = getString(R.string.noConnection);
+    		  horoscopeRegion.setText(horoscopeText);
+    		  
+    		  
+    	  }
+    	  
+      }
+      
+      public static void setHoroscopeText(String newText){
+    	  if (newText != null){
+    		  if (newText.length() <= 0){
+    			  horoscopeText = noConnectionError;
+    		  }
+    		  
+    	  } else {
+    		  horoscopeRegion.setText(horoscopeText);
+    	  }
+    	  horoscopeRegion.setText(newText + horoscopeText);
+    	  horoscopeRegion.setVisibility(View.VISIBLE);
+    	  
+      }
+      
+      
+      public Context relayContext(){
+    	  return currentContext;
+      }
+      public void setLoadedSign(String signString){
+    	  lastSignLoaded = signString;
+      }
+      public void refreshInfo(){
+    	  final Handler h = new Handler();
+          h.postDelayed(new Runnable()
+          {
+          	
+              @Override
+              public void run()
+              {
+              	if (lastSignLoaded != signFromSpinner){
+              		loadAndSetHoroscope(signFromSpinner);
+                      
+                      Log.d("Timer", signFromSpinner + lastSignLoaded);
+                      h.postDelayed(this, 2500);
+              	}
+              	
+              }}, 2500);
+      }
+      public View getView(int position, View convertView, ViewGroup parent) {
+    	    if (convertView == null) {
+    	        convertView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.linear_for_grid, parent, false);
+    	    }
+    	 
+    	    return convertView;
+    	}
+      public static String getHoroscopeTextForComparison(){
+    	  return horoscopeText;
+      }
+      public static void getError(String type){
+    	  horoscopeText = type;
+      }
+     
 }

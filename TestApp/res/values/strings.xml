@@ -7,7 +7,9 @@
     <string name="textField">enter text:</string>
     <string name="EditText">enter text:</string>
     <string name="sendButton">send</string>
+    <string name="selectSign">that\'s my sign</string>
     <string name="title_activity_display_message">MyMessage</string>
+    <string name="refresh">Refresh</string>
     <string name="Capricorn">Capricorn: Dec 22 - Jan 20</string>
     <string name="Aquarius">Aquarius: Jan 21 - Feb 19</string>
     <string name="Pisces">Pisces: Feb 20 - Mar 20</string>
@@ -32,5 +34,20 @@
 	<string name="noConnection">No connection found. Additional features disabled.</string>
 	<string name="saveButtonText">Save sign as default</string>
 	<string name="reselect">Choose another sign</string>
-	<string name="loading">internet connection problems. Check your settings.</string>
+	<string name="selectASignForHoroscope">Select a sign for horoscope</string>
+	<string name="loading">Loading data, please wait a moment</string>
+	<string-array name="signArray">
+	    <item>Capricorn</item>
+	    <item>Aquarius</item>
+	    <item>Pisces</item>
+	    <item>Aries</item>
+	    <item>Taurus</item>
+	    <item>Gemini</item>
+	    <item>Cancer</item>
+	    <item>Leo</item>
+	    <item>Virgo</item>
+	    <item>Libra</item>
+	    <item>Scorpio</item>
+	    <item>Sagittarius</item>
+	</string-array>
 </resources>
