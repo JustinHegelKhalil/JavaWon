@@ -23,31 +23,50 @@
     <string name="Scorpio">Scorpio: Oct 23 - Nov 21</string>
     <string name="Sagittarius">Sagittarius: Nov 22 - Dec 21</string>
     <string name="title_activity_display_sign_info">Your Sign</string>
-	<string name="promptText">Please select your zodiac sign:</string>
-	<string name="enterBDay">Please enter your birthday: </string>
-	<string name="month">Month:</string>
-	<string name="day">Day:</string>
-	<string name="Horoscope">Horoscope:</string>
-	<string name="symbol">Symbol:</string>
-	<string name="element">Element:</string>
-	<string name="sign:">Sign:</string>
-	<string name="noConnection">No connection found. Additional features disabled.</string>
-	<string name="saveButtonText">Save sign as default</string>
-	<string name="reselect">Choose another sign</string>
-	<string name="selectASignForHoroscope">Select a sign for horoscope</string>
-	<string name="loading">Loading data, please wait a moment</string>
-	<string-array name="signArray">
-	    <item>   Capricorn: Dec 22 - Jan 20</item>
-	    <item>   Aquarius: Jan 21 - Feb 19</item>
-	    <item>   Pisces: Feb 20 - Mar 20</item>
-	    <item>   Aries: Mar 21 - Apr 19</item>
-	    <item>   Taurus: Apr 20 - May 20</item>
-	    <item>   Gemini: May 21 - Jun 20</item>
-	    <item>   Cancer: Jun 21 - Jul 22</item>
-	    <item>   Leo: Jul 23 - Aug 22</item>
-	    <item>   Virgo: Aug 23 - Sep 22</item>
-	    <item>   Libra: Sep 23 - Oct 22</item>
-	    <item>   Scorpio: Oct 23 - Nov 21</item>
-	    <item>   Sagittarius: Nov 22 - Dec 21</item>
-	</string-array>
+    <string name="promptText">Please select your zodiac sign:</string>
+    <string name="enterBDay">Please enter your birthday: </string>
+    <string name="month">Month:</string>
+    <string name="day">Day:</string>
+    <string name="Horoscope">Horoscope:</string>
+    <string name="symbol">Symbol:</string>
+    <string name="element">Element:</string>
+    <string name="sign:">Sign:</string>
+    <string name="noConnection">No connection found. Additional features disabled.</string>
+    <string name="saveButtonText">Save sign as default</string>
+    <string name="reselect">Choose another sign</string>
+    <string name="selectASignForHoroscope">Select a sign for horoscope</string>
+    <string name="loading">Loading data, please wait a moment</string>
+    <string name="viewInWebview">view full horoscope from Astrology.com</string>
+
+    <string-array name="signArray">
+        <item>   Capricorn: Dec 22 - Jan 20</item>
+        <item>   Aquarius: Jan 21 - Feb 19</item>
+        <item>   Pisces: Feb 20 - Mar 20</item>
+        <item>   Aries: Mar 21 - Apr 19</item>
+        <item>   Taurus: Apr 20 - May 20</item>
+        <item>   Gemini: May 21 - Jun 20</item>
+        <item>   Cancer: Jun 21 - Jul 22</item>
+        <item>   Leo: Jul 23 - Aug 22</item>
+        <item>   Virgo: Aug 23 - Sep 22</item>
+        <item>   Libra: Sep 23 - Oct 22</item>
+        <item>   Scorpio: Oct 23 - Nov 21</item>
+        <item>   Sagittarius: Nov 22 - Dec 21</item>
+    </string-array>
+    <string-array name="oneWordSignArray">
+        <item>Capricorn</item>
+        <item>Aquarius</item>
+        <item>Pisces</item>
+        <item>Aries</item>
+        <item>Taurus</item>
+        <item>Gemini</item>
+        <item>Cancer</item>
+        <item>Leo</item>
+        <item>Virgo</item>
+        <item>Libra</item>
+        <item>Scorpio</item>
+        <item>Sagittarius</item>
+    </string-array>
+
+    <string name="title_activity_web_view">Astrology.com View</string>
+
 </resources>

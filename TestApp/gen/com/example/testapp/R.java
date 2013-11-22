@@ -9,6 +9,7 @@ package com.example.testapp;
 
 public final class R {
     public static final class array {
+        public static final int oneWordSignArray=0x7f080001;
         public static final int signArray=0x7f080000;
     }
     public static final class attr {
@@ -69,32 +70,38 @@ public final class R {
         public static final int water_el=0x7f02000e;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a000c;
-        public static final int element_image=0x7f0a0001;
-        public static final int gridView_one=0x7f0a000b;
-        public static final int grid_item_label=0x7f0a000a;
+        public static final int action_settings=0x7f0a000e;
+        public static final int element_image=0x7f0a0002;
+        public static final int gridView_one=0x7f0a000c;
+        public static final int grid_item_label=0x7f0a000b;
         public static final int grid_one=0x7f0a0000;
-        public static final int horoscopeDisplay=0x7f0a0009;
-        public static final int linlay_box=0x7f0a0005;
-        public static final int linlay_one=0x7f0a0002;
-        public static final int linlay_three=0x7f0a0008;
-        public static final int linlay_two=0x7f0a0006;
-        public static final int saveSetting=0x7f0a0007;
-        public static final int signSelectedButton=0x7f0a0004;
-        public static final int sign_spinner=0x7f0a0003;
+        public static final int horoscopeDisplay=0x7f0a000a;
+        public static final int linlay_box=0x7f0a0006;
+        public static final int linlay_one=0x7f0a0003;
+        public static final int linlay_three=0x7f0a0009;
+        public static final int linlay_two=0x7f0a0007;
+        public static final int openWeb=0x7f0a000d;
+        public static final int saveSetting=0x7f0a0008;
+        public static final int signSelectedButton=0x7f0a0005;
+        public static final int sign_spinner=0x7f0a0004;
+        public static final int webview=0x7f0a0001;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int element_image=0x7f030001;
-        public static final int inflato_layout=0x7f030002;
-        public static final int linear_for_grid=0x7f030003;
-        public static final int main_layout=0x7f030004;
-        public static final int second_row_layout=0x7f030005;
-        public static final int sign_selector=0x7f030006;
-        public static final int spinner_layout=0x7f030007;
+        public static final int activity_web_view=0x7f030001;
+        public static final int element_image=0x7f030002;
+        public static final int inflato_layout=0x7f030003;
+        public static final int linear_for_grid=0x7f030004;
+        public static final int main_layout=0x7f030005;
+        public static final int second_row_layout=0x7f030006;
+        public static final int sign_selector=0x7f030007;
+        public static final int spinner_layout=0x7f030008;
+        public static final int viewflipper_layout=0x7f030009;
+        public static final int webview_layout=0x7f03000a;
     }
     public static final class menu {
         public static final int main=0x7f090000;
+        public static final int web_view=0x7f090001;
     }
     public static final class string {
         public static final int Aquarius=0x7f07000a;
@@ -132,6 +139,8 @@ public final class R {
         public static final int textField=0x7f070003;
         public static final int title_activity_display_message=0x7f070007;
         public static final int title_activity_display_sign_info=0x7f070015;
+        public static final int title_activity_web_view=0x7f070024;
+        public static final int viewInWebview=0x7f070023;
     }
     public static final class style {
         /** 

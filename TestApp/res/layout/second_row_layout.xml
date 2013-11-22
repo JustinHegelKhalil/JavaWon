@@ -48,6 +48,17 @@
         	android:id="@+id/horoscopeDisplay"
         	android:layout_height="match_parent"
         	android:text="@string/selectASignForHoroscope"/>
+        	<Button
+            android:layout_width="match_parent"
+        	android:id="@+id/openWeb"
+        	android:layout_gravity="left"
+        	android:layout_height="50dp"
+        	android:padding="10dp"
+        	android:layout_marginTop="10dp"
+        	android:layout_marginRight="10dp"
+        	android:layout_marginBottom="10dp"
+        	android:background="@drawable/button_gradient_one"
+        	android:text="@string/viewInWebview" />
         
     </LinearLayout>
     </LinearLayout>
